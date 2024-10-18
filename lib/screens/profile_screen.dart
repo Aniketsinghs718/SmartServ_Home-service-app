@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart'; // Import url_launcher
+import 'package:shared_preferences/shared_preferences.dart'; // Import SharedPreferences
 import 'login_screen.dart'; // Import your LoginScreen
 
 class ProfileScreen extends StatelessWidget {
@@ -13,7 +14,6 @@ class ProfileScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // User Avatar as an Icon
             CircleAvatar(
               radius: 60,
               backgroundColor: Colors.blueAccent,
@@ -24,7 +24,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 16),
-            // User Name
             Text(
               'Aniket Singh',
               style: TextStyle(
@@ -33,7 +32,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 8),
-            // User Email
             Text(
               'Aniket718@ex.com',
               style: TextStyle(
@@ -42,7 +40,6 @@ class ProfileScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 32),
-            // Settings List
             Expanded(
               child: ListView(
                 children: [
@@ -85,22 +82,23 @@ class ProfileScreen extends StatelessWidget {
       scheme: 'tel',
       path: phoneNumber,
     );
-    if (await canLaunch(launchUri.toString())) {
-      await launch(launchUri.toString());
+    if (await canLaunchUrl(launchUri)) {
+      await launchUrl(launchUri);
     } else {
-      throw 'Could not launch $launchUri';
+      throw 'Could not launch $phoneNumber';
     }
   }
 
-  void _logout(BuildContext context) {
-    // Perform any logout operations here (e.g., clearing user data)
+  void _logout(BuildContext context) async {
+    // Clear user data from SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('email');
+    await prefs.remove('password');
 
     // Navigate back to the login screen
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(
-          builder: (context) =>
-              LoginScreen()), // Ensure you have the LoginScreen
+      MaterialPageRoute(builder: (context) => LoginScreen()),
       (Route<dynamic> route) => false, // Remove all previous routes
     );
   }

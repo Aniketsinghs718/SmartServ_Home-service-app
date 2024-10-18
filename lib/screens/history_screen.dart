@@ -118,7 +118,8 @@ class HistoryScreen extends StatelessWidget {
                   ),
                 );
               },
-              child: Text('Cancel Order'),
+              child:
+                  Text('Cancel Order', style: TextStyle(color: Colors.white)),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red, // Button color
                 shape: RoundedRectangleBorder(
