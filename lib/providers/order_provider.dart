@@ -10,4 +10,9 @@ class OrderProvider with ChangeNotifier {
     _orders.add(order);
     notifyListeners();
   }
+
+  void removeOrder(OrderModel order) {
+    _orders.remove(order);
+    notifyListeners();
+  }
 }

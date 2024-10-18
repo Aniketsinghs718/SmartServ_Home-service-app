@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart'; // Import url_launcher
 import 'login_screen.dart'; // Import your LoginScreen
 
 class ProfileScreen extends StatelessWidget {
@@ -18,14 +19,14 @@ class ProfileScreen extends StatelessWidget {
               backgroundColor: Colors.blueAccent,
               child: Icon(
                 Icons.person,
-                size: 50,
+                size: 55,
                 color: Colors.white,
               ),
             ),
             SizedBox(height: 16),
             // User Name
             Text(
-              'John Doe',
+              'Aniket Singh',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -34,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
             SizedBox(height: 8),
             // User Email
             Text(
-              'johndoe@example.com',
+              'Aniket718@ex.com',
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.grey[600],
@@ -55,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                     // Navigate to notifications settings screen
                   }),
                   _buildListTile(Icons.help, 'Help & Support', () {
-                    // Navigate to help and support screen
+                    _callSupport(); // Call the support function
                   }),
                   _buildListTile(Icons.logout, 'Log Out', () {
                     _logout(context); // Call the logout function
@@ -76,6 +77,19 @@ class ProfileScreen extends StatelessWidget {
       onTap: onTap,
       trailing: Icon(Icons.arrow_forward_ios, color: Colors.grey),
     );
+  }
+
+  void _callSupport() async {
+    const phoneNumber = '8263042688';
+    final Uri launchUri = Uri(
+      scheme: 'tel',
+      path: phoneNumber,
+    );
+    if (await canLaunch(launchUri.toString())) {
+      await launch(launchUri.toString());
+    } else {
+      throw 'Could not launch $launchUri';
+    }
   }
 
   void _logout(BuildContext context) {

@@ -25,6 +25,12 @@ class ServiceSelectionScreen extends StatelessWidget {
         phoneNumber: '8263042688',
         rating: 3.5,
       ),
+      ServiceProviderModel(
+        name: 'Tushar Godge',
+        cost: 80,
+        phoneNumber: '8955454188',
+        rating: 4.1,
+      ),
       // Add more providers as needed
     ];
 
