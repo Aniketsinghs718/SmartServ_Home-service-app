@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "4325117371",
+    "project_id": "smartserv-27456",
+    "storage_bucket": "smartserv-27456.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4325117371:android:dae7d9592e1d3e9ed1c89e",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsX2NUDgJ1jP6OxKBYFmmNRnyS7FihhKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

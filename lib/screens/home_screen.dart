@@ -1,5 +1,3 @@
-// lib/screens/home_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/service_model.dart';
@@ -54,7 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: Icons.car_repair,
       price: 200.0,
     ),
-    // Add more services as needed
   ];
 
   void _onItemTapped(int index) {
@@ -70,16 +67,37 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Services'),
+        // Cool gradient in AppBar
+        title: Text(
+          'Home Services',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blueAccent, Colors.lightBlueAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          ),
+        ),
+        elevation: 0,
       ),
       body: _selectedIndex == 0
           ? Column(
               children: [
                 Expanded(
                   child: GridView.builder(
+                    padding: EdgeInsets.all(10),
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.75,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.8,
                     ),
                     itemCount: services.length,
                     itemBuilder: (context, index) {
@@ -91,9 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ServiceSelectionScreen(
-                                  service:
-                                      service), // Navigate to selection screen
+                              builder: (context) =>
+                                  ServiceSelectionScreen(service: service),
                             ),
                           );
                         },
@@ -108,6 +125,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : ProfileScreen(), // Navigate to Profile Screen
 
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -123,8 +141,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Colors.blueAccent,
+        unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
+        elevation: 5,
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'login_screen.dart'; // Import the login screen
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 2), () {
       // Navigate to Login after 3 seconds
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -12,10 +12,12 @@ class SplashScreen extends StatelessWidget {
     });
 
     return Scaffold(
+      backgroundColor: Colors.blue,
       body: Center(
         child: Text(
-          'Welcome to Home Service App',
-          style: TextStyle(fontSize: 24),
+          'Welcome to SmartServ',
+          style: TextStyle(
+              fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );

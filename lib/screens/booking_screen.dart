@@ -1,5 +1,3 @@
-// lib/screens/booking_screen.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/order_model.dart';
@@ -128,13 +126,55 @@ class _BookingScreenState extends State<BookingScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Selected Provider: ${widget.serviceProvider.name}',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            // Cool looking container for provider details
+            Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 10,
+                    offset: Offset(0, 3), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Service Provider Details',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Name: ${widget.serviceProvider.name}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Cost: ₹${widget.serviceProvider.cost}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Phone: ${widget.serviceProvider.phoneNumber}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                  SizedBox(height: 5),
+                  Text(
+                    'Rating: ${widget.serviceProvider.rating}',
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
-            Text('Cost: \$${widget.serviceProvider.cost}'),
-            Text('Phone: ${widget.serviceProvider.phoneNumber}'),
-            Text('Rating: ${widget.serviceProvider.rating}'),
             SizedBox(height: 20),
             Text('Address:'),
             TextField(

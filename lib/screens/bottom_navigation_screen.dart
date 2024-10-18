@@ -1,5 +1,3 @@
-// lib/screens/bottom_navigation_screen.dart
-
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'history_screen.dart'; // Import the HistoryScreen
@@ -12,11 +10,10 @@ class BottomNavigationScreen extends StatefulWidget {
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedIndex = 0;
-
   List<Widget> _pages = [
     HomeScreen(),
-    HistoryScreen(), // Add the HistoryScreen
-    ProfileScreen(), // Add the ProfileScreen
+    HistoryScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -29,23 +26,67 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: 'History',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 5,
+              blurRadius: 10,
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+          selectedItemColor: Colors.blueAccent,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: false,
+          elevation: 10,
+          items: [
+            BottomNavigationBarItem(
+              icon: AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: Icon(
+                  Icons.home,
+                  color: _selectedIndex == 0 ? Colors.blueAccent : Colors.grey,
+                  size:
+                      _selectedIndex == 0 ? 30 : 24, // Size change for selected
+                ),
+              ),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: Icon(
+                  Icons.history,
+                  color: _selectedIndex == 1 ? Colors.blueAccent : Colors.grey,
+                  size:
+                      _selectedIndex == 1 ? 30 : 24, // Size change for selected
+                ),
+              ),
+              label: 'History',
+            ),
+            BottomNavigationBarItem(
+              icon: AnimatedContainer(
+                duration: Duration(milliseconds: 200),
+                curve: Curves.easeInOut,
+                child: Icon(
+                  Icons.person,
+                  color: _selectedIndex == 2 ? Colors.blueAccent : Colors.grey,
+                  size:
+                      _selectedIndex == 2 ? 30 : 24, // Size change for selected
+                ),
+              ),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }

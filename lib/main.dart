@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         // Add other providers if necessary
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Home Service App',
         theme: ThemeData(
           primarySwatch: Colors.blue,

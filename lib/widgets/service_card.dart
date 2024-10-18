@@ -7,25 +7,44 @@ class ServiceCard extends StatelessWidget {
   final ServiceModel service;
   final VoidCallback onBook;
 
-  const ServiceCard({
-    Key? key,
-    required this.service,
-    required this.onBook,
-  }) : super(key: key);
+  ServiceCard({required this.service, required this.onBook});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkWell(
-        onTap: onBook,
+    return GestureDetector(
+      onTap: onBook, // Trigger the booking action when the tile is tapped
+      child: Card(
+        elevation: 4,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Icon(service.icon, size: 50), // Display service icon
-            SizedBox(height: 8),
-            Text(service.name, style: TextStyle(fontSize: 20)),
-            SizedBox(height: 4),
-            Text(service.description),
+            Expanded(
+              child: Icon(
+                service.icon,
+                size: 50,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                service.name,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text(
+                service.description,
+                style: TextStyle(color: Colors.grey),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'Starting at ₹${service.price}', // Display "Starting at ₹X"
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),
