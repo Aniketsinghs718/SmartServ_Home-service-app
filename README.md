@@ -1,4 +1,6 @@
-# demo
+# MyFirstApp
+Its my First flutter project, which i decided to make for my Sem 3 mini project named as SmartServ - Home Service platform
+I have used basic of flutter to create UI and also created Backend also using concept of SharedPreference in flutter
 
 A new Flutter project created with FlutLab - https://flutlab.io
 
